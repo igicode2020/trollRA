@@ -4,9 +4,9 @@ from tensorflow.keras.models import Model
 import numpy as np
 
 # ONLY EXAMPLE DATA SETUP CSV DATA once accurate
-time_data = np.array([8, 12, 16, 20, 10, 6, 18, 14, 22, 7, 11, 15, 19, 9, 21])  # Example times (in hours)
-location_data = np.array([1, 3, 2, 4, 5, 2, 4, 1, 3, 5, 1, 4, 2, 5, 3])  # Example locations (could be indices or IDs)
-likelihood_data = np.array([0.1, 0.8, 0.3, 0.9, 0.5, 0.2, 0.6, 0.4, 0.7, 0.3, 0.5, 0.9, 0.2, 0.8, 0.6])  # Example likelihoods (percentages)
+time_data = np.array([8, 12, 16, 20, 3, 6, 18, 14, 22, 7, 11, 15, 19, 9, 21])  # Example times (in hours)
+location_data = np.array([1, 3, 2, 4, 4, 2, 4, 1, 3, 5, 1, 4, 2, 5, 3])  # Example locations (could be indices or IDs)
+likelihood_data = np.array([0.1, 0.8, 0.1, 0.9, 0.5, 0.2, 0.6, 0.4, 0.7, 0.3, 0.5, 0.9, 0.2, 0.8, 0.6])  # Example likelihoods (percentages)
 
 # Reshape data
 time_data = time_data.reshape(-1, 1)

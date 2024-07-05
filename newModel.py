@@ -3,9 +3,9 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 
 # Example data
-time_data = np.array([8, 12, 16, 20, 10, 6, 18, 14, 22, 7, 11, 15, 19, 9, 21])
-location_data = np.array([1, 3, 2, 4, 5, 2, 4, 1, 3, 5, 1, 4, 2, 5, 3])
-likelihood_data = np.array([0.1, 0.8, 0.3, 0.9, 0.5, 0.2, 0.6, 0.4, 0.7, 0.3, 0.5, 0.9, 0.2, 0.8, 0.6])
+time_data = np.array([8, 12, 13, 20, 5, 6, 18, 14, 22, 7, 11, 15, 19, 9, 21])
+location_data = np.array([1, 3, 1, 4, 2, 2, 4, 1, 3, 5, 1, 4, 2, 5, 3])
+likelihood_data = np.array([0.1, 0.2, 0.1, 0.9, 0.5, 0.2, 0.6, 0.4, 0.7, 0.3, 0.5, 0.9, 0.2, 0.8, 0.6])
 
 # Define the model
 model = Sequential([
