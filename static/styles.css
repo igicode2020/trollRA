@@ -1,0 +1,43 @@
+/* for your CSS */
+.username{
+    color: white !important;
+}
+.max_tokens{
+    width: 5px;
+}
+
+table {
+    background-color: transparent;
+    margin-bottom: 1rem;
+    width: 50%;
+    margin: auto;
+}
+
+table th,
+table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color: rgb(179, 208, 255, 0.3);
+}
+.response {
+    margin: auto;
+}
+.genre {
+    text-align: center;
+}
+.about{
+    padding-left: 15%;
+    padding-right: 15%;
+    text-align: center;
+}
+div.container-about {
+    text-align: center;
+  }
+
+  ol.ol{
+    display: inline-block;
+    text-align: left;
+  }
