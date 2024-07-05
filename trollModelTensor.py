@@ -33,7 +33,22 @@ dense1 = Dense(10, activation='relu')(lstm_layer)
 dense2 = Dense(5, activation='relu')(dense1)
 
 # Output layer
+output = Dense(1, activation='sigmoidlstm_layer = tf.keras.layers.LSTM(10)(tf.expand_dims(concatenated, axis=1))
+
+# Dense layers for processing
+dense1 = Dense(10, activation='relu')(lstm_layer)
+dense2 = Dense(5, activation='relu')(dense1)
+
+# Output layer
 output = Dense(1, activation='sigmoid', name='likelihood')(dense2)
+
+# Define + Compile model, maybe change optimizer?
+model = Model(inputs=[time_input, location_input], outputs=output)
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+model.summary()
+
+# Fit the model with', name='likelihood')(dense2)
 
 # Define + Compile model, maybe change optimizer?
 model = Model(inputs=[time_input, location_input], outputs=output)
