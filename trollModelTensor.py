@@ -57,4 +57,4 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 model.summary()
 
 # Fit the model with epochs setting and validation split
-modelFinal = model.fit([time_input, location_input], epochs=10)
+modelFinal = model.fit([time_input, location_input], epochs=20)
