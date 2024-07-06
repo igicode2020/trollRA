@@ -1,0 +1,62 @@
+{% extends "index.html" %}
+{% block title %}
+Login
+{% endblock %}
+
+{% block main%}
+<!-- Inspired from MD Bootstrap Register Example-->
+<br>
+<br>
+<br>
+<br>
+<section class="vh-100">
+<div class="mask d-flex align-items-center h-50 gradient-custom-3">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body p-5">
+            <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+            <form action="/register" method="post" onsubmit="validateRegistrationForm()">
+
+              <div class="form-outline mb-4">
+                <input type="text" id="username" name="username" class="form-control form-control-lg">
+                <label class="form-label" for="username">Email</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" id="password" name="password" class="form-control form-control-lg">
+                <label class="form-label" for="password">Password</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control form-control-lg">
+                <label class="form-label" for="confirm_password">Repeat your password</label>
+              </div>
+              {% if error %}
+                    <div class="alert alert-danger">
+                      <p>{{ error }}</p>
+                    </div>
+                  {% endif %}
+                    <br>
+              <div class="d-flex justify-content-center">
+                <button type="submit"
+                  class="btn btn-outline-dark btn-lg px-5">Register</button>
+              </div>
+            </form>
+              <p class="text-center text-muted mt-5 mb-0">Have already an account?<a href="/login"
+                  class="fw-bold text-body"><u>Login here</u></a></p>
+
+
+          </div>
+        </div>
+        <br>
+      </div>
+
+    </div>
+  </div>
+</div>
+</section>
+
+{% endblock %}

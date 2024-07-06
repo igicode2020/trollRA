@@ -3,24 +3,33 @@
 // mostly stackOverflow snippets/references
 function validateForm() {
     var username = document.getElementById("username").value;
-    var password = document.getElementById("typePasswordX").value;
+    var password = document.getElementById("password").value;
     var errorMessage = "";
 
-    if (username.trim() === "" && password.trim() === "") {
-      errorMessage = "Please enter both username and password!";
-    } else if (username.trim() === "") {
-      errorMessage = "Please enter a username!";
-    } else if (password.trim() === "") {
-      errorMessage = "Please enter a password!";
+    console.log("Username:", username); // Debugging statement
+    console.log("Password:", password); // Debugging statement
+
+    // Check if username is empty
+    if (username.trim() === "") {
+        errorMessage = "Please enter a username!";
+    }
+    // Check if password is empty
+    else if (password.trim() === "") {
+        errorMessage = "Please enter a password!";
+    }
+    // Check if username does not match the required pattern
+    else if (!username.endsWith("@andrew.cmu.edu")) {
+        errorMessage = "Username must be a valid '@andrew.cmu.edu' email!";
     }
 
     if (errorMessage !== "") {
-      alert(errorMessage);
-      return false;
+        alert(errorMessage);
+        return false;
     }
 
     return true;
-  }
+}
+
 
   document.addEventListener("DOMContentLoaded", function() {
     var form = document.getElementById("loginForm");

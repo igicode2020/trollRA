@@ -26,17 +26,6 @@
             <li class="nav-item active">
               <a class="nav-link" aria-current="page" href="/">Home</a>
             </li>
-            {% if session.user_id %}
-              <li class="nav-item">
-                <a class="nav-link" href="/history">History</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/pricing">Pricing</a>
-              </li>
-            {% endif %}
-            <li class="nav-item">
-              <a class="nav-link" href="/about">About</a>
-            </li>
             {% if not session.user_id %}
               <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
@@ -44,7 +33,7 @@
             {% endif %}
             {% if session.user_id %}
               <li class="nav-item">
-                <a class="nav-link btn btn-dark disabled username" href="#">Hello, {{ username }}!</a>
+                <a class="nav-link btn btn-dark disabled username" href="#">Hello, {{ username23 }}!</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/logout">Logout</a>
@@ -66,14 +55,16 @@
     <!-- Jumbotron -->
     <div class="p-5 text-center bg-light">
       <h1 class="mb-3 text-center">Find Justin</h1>
-      <h5 class="mb-3 text-center">Enter a prompt in the field below and get a list of books, movies, and more in
-        response!</h5>
+      {% if session.user_id %}
+      <h5 class="mb-3 text-center">Enter a prompt in order to find Justin!</h5>
+      {% endif %}
       {% if not session.user_id %}
       <p class="mb-3 text-center">You need to login in order to see the submission area</p>
       {% endif %}
       {% if session.user_id %}
       <form action="/" method="post" onsubmit="validateFormPrompt()">
-        <div class="justify-content-center">
+        <input type="text" id="prompt" name="prompt" class="form-control-lg mb-4" />
+        <div class="justify-content-center ">
           <button type="submit" class="btn btn-outline-primary">Find</button>
         </div>
       </form>
@@ -83,6 +74,19 @@
     <!-- Jumbotron -->
   </header>
   <div class="justify-content-center">
+        <main>
+      {% if session.user_id %}
+      {% block pricing %}
+      {% endblock %}
+      {% block discover %}
+      {% endblock %}
+      {% endif %}
+      {% block main %}
+      {% endblock %}
+      {% block about %}
+      {% endblock %}
+
+    </main>
   </div>
 </body>
 

@@ -41,4 +41,85 @@ def index():
     else:
         username = "null"
         user_tokens = 0
-    return render_template("index.html", username=username, in_index=in_index, user_tokens=user_tokens)
+    prompt =
+    username23 = username.rstrip('@andrew.cmu.edu')
+    return render_template("index.html", username=username, in_index=in_index, user_tokens=user_tokens, username23=username23, prompt=prompt)
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    session.clear()
+
+    if request.method == "POST":
+        # Error handling
+        if not request.form.get("username"):
+            error = "Please enter a Username"
+            return render_template("login.html", error=error)
+
+        if not request.form.get("password"):
+            error = "Please enter a password"
+            return render_template("login.html", error=error)
+
+        # Request database for username
+        rows = db.execute(
+            "SELECT * FROM users WHERE username = ?;", request.form.get("username"))
+
+        # Ensure username exists and password is correct
+        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
+            error = "Invalid Username or Password"
+            return render_template("login.html", error=error)
+
+        # Remember which user has logged in
+        session['user_id'] = rows[0]['id']
+        session["username"] = request.form.get("username")
+        # Redirect user to home page
+        return redirect("/")
+
+    elif request.method == "GET":
+        return render_template("login.html")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+
+        # Error handling
+        if not (username := request.form.get("username")):
+            error = "Please enter a Username"
+            return render_template("register.html", error=error)
+
+        if not (password := request.form.get("password")):
+            error = "Please enter a password"
+            return render_template("register.html", error=error)
+
+        if not (confirmation := request.form.get("confirm_password")):
+            error = "Passwords do not match"
+            return render_template("register.html", error=error)
+
+        # Queries database for username
+        rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
+
+        # Ensures that the username  is not in database
+        if len(rows) != 0:
+            error = f"The username '{username}' already exists. Please choose another name."
+            return render_template("register.html", error=error)
+
+        # Ensure first password and second password are matched
+        if password != confirmation:
+            error = "Passwords do not match"
+            return render_template("register.html", error=error)
+
+        # Inserts username into database
+        id = db.execute("INSERT INTO users (username, hash) VALUES (?, ?);",
+                        username, generate_password_hash(password))
+
+        # Remember which user has logged in
+        session["user_id"] = id
+        session["username"] = username
+        return redirect("/")
+
+    elif request.method == "GET":
+        return render_template("register.html")
+
+@app.route("/logout", methods=["GET"])
+def logout():
+    session.clear()
+    return redirect("/")
